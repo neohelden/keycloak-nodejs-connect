@@ -98,6 +98,9 @@ GrantManager.prototype.obtainFromCode = function obtainFromCode (request, code, 
     client_id: this.clientId,
     redirect_uri: request.session ? request.session.auth_redirect_uri : {}
   };
+
+  console.log(JSON.stringify(params));
+
   const handler = createHandler(this);
   const options = postOptions(this);
 
@@ -122,6 +125,8 @@ GrantManager.prototype.obtainFromAuthCode = function obtainFromAuthCode (code, r
     client_secret: this.secret,
     redirect_uri: redirectUri
   };
+
+  console.log(JSON.stringify(params));
 
   const handler = createHandler(this);
   const options = postOptions(this);
