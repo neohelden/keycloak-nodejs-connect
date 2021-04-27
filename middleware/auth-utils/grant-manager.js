@@ -455,6 +455,14 @@ GrantManager.prototype.validateToken = function validateToken (token, expectedTy
     } else if (token.content.iat < this.notBefore) {
       reject(new Error('invalid token (stale token)'));
     } else if (token.content.iss !== this.realmUrl) {
+      console.log('-----------------------------')
+      console.log('-----------------------------')
+      console.log('-----------------------------')
+      console.log(JSON.stringify(token.content));
+      console.log(this.realmUrl);
+      console.log('-----------------------------')
+      console.log('-----------------------------')
+      console.log('-----------------------------')
       reject(new Error('invalid token (wrong ISS)'));
     } else {
       var audienceData = Array.isArray(token.content.aud) ? token.content.aud : [token.content.aud];
