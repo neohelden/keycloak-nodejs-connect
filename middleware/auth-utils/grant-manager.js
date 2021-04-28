@@ -99,8 +99,6 @@ GrantManager.prototype.obtainFromCode = function obtainFromCode (request, code, 
     redirect_uri: request.session ? request.session.auth_redirect_uri : {}
   };
 
-  console.log(JSON.stringify(params));
-
   const handler = createHandler(this);
   const options = postOptions(this);
 
@@ -125,8 +123,6 @@ GrantManager.prototype.obtainFromAuthCode = function obtainFromAuthCode (code, r
     client_secret: this.secret,
     redirect_uri: redirectUri
   };
-
-  console.log(JSON.stringify(params));
 
   const handler = createHandler(this);
   const options = postOptions(this);
@@ -443,8 +439,6 @@ GrantManager.prototype.validateGrant = function validateGrant (grant) {
  * @return {Promise} That resolve a token
  */
 GrantManager.prototype.validateToken = function validateToken (token, expectedType) {
-  console.log(JSON.stringify(token.content));
-  console.log(this.realmUrl);
   return new Promise((resolve, reject) => {
     if (!token) {
       reject(new Error('invalid token (missing)'));
@@ -456,6 +450,8 @@ GrantManager.prototype.validateToken = function validateToken (token, expectedTy
       reject(new Error('invalid token (wrong type)'));
     } else if (token.content.iat < this.notBefore) {
       reject(new Error('invalid token (stale token)'));
+    } else if (token.content.iss !== this.realmUrl) {
+      reject(new Error('invalid token (wrong ISS)'));
     } else {
       var audienceData = Array.isArray(token.content.aud) ? token.content.aud : [token.content.aud];
       if (expectedType === 'ID') {
