@@ -444,7 +444,7 @@ GrantManager.prototype.validateToken = function validateToken (token, expectedTy
   console.log('Got:')
   console.log(token.content.iss)
   console.log('Expected:')
-  console.log(this.realmUrl)
+  console.log(this.internalRealmUrl)
   console.log('----------')
   return new Promise((resolve, reject) => {
     if (!token) {
