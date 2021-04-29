@@ -440,12 +440,6 @@ GrantManager.prototype.validateGrant = function validateGrant (grant) {
  * @return {Promise} That resolve a token
  */
 GrantManager.prototype.validateToken = function validateToken (token, expectedType) {
-  console.log('----------')
-  console.log('Got:')
-  console.log(token.content.iss)
-  console.log('Expected:')
-  console.log(this.internalRealmUrl)
-  console.log('----------')
   return new Promise((resolve, reject) => {
     if (!token) {
       reject(new Error('invalid token (missing)'));
