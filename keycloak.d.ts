@@ -19,6 +19,7 @@ declare namespace KeycloakConnect {
 
   interface KeycloakConfig {
     'auth-server-url': string
+    'internal-realm-url': string
     'realm': string
     'clientId': string
     'secret': string
