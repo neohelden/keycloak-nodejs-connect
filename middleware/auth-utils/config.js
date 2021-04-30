@@ -128,7 +128,14 @@ Config.prototype.configure = function configure (config) {
    * Root realm URL.
    * @type {String}
    */
+  // config['realmUrl'] || 
   this.realmUrl = this.authServerUrl + '/realms/' + this.realm;
+  
+  /**
+   * Internal realm URL to check iss.
+   * @type {String}
+   */
+  this.internalRealmUrl = config['internal-realm-url'] || this.realmUrl
 
   /**
    * Root realm admin URL.
